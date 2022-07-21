@@ -32,13 +32,16 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'simple-import-sort/sort': 'error',
+    'unicorn/no-null': 'off',
     'unicorn/filename-case': [
       'error',
       {
         cases: {
-          camelCase: true,
-          kebabCase: true
-        }
+          camelCase: false,
+          kebabCase: false
+        },
+        // ignore: ['^FOOBAR\\.js$', '^(B|b)az', '\\.SOMETHING\\.js$', /^vendor/i],
+        ignore: ['src/containers/**/*.js']
       }
     ]
   }

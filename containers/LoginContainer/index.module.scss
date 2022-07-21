@@ -1,0 +1,21 @@
+@import "@styles/variables";
+
+.description {
+  text-align: left;
+  color: $main-color;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.form {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.loginError {
+  text-align: left;
+  color: $error;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,11 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+.SpPageLayout {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+#main {
+  margin: 0 auto;
+}
