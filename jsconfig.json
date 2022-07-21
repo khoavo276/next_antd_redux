@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@store/*": ["store/*"]
+    }
+  },
+  "exclude": ["node_modules", ".next"]
+}
