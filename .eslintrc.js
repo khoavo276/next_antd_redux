@@ -41,7 +41,6 @@ module.exports = {
           kebabCase: true,
           pascalCase: true
         }
-        // ignore: ['^FOOBAR\\.js$', '^(B|b)az', '\\.SOMETHING\\.js$', /^vendor/i]
         // ignore: ['src/containers/**/*.js']
       }
     ]
