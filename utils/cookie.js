@@ -1,13 +1,13 @@
 import { convertTimestampToDate } from '@utils/date';
-import { pick } from 'lodash';
-import UniversalCookie from 'universal-cookie';
+import Cookies from 'universal-cookie';
 
-const cookie = new UniversalCookie();
+const cookies = new Cookies();
 
 export function setUserInfo(data) {
-  cookie.set(
+  cookies.set(
     'userInfo',
-    { ...data, enterprise: pick(data.enterprise, ['type', 'extraType']) },
+    // { ...data, enterprise: pick(data.enterprise, ['type', 'extraType']) },
+    { data },
     {
       path: '/',
       expires: convertTimestampToDate(getExpireTime())
@@ -16,29 +16,29 @@ export function setUserInfo(data) {
 }
 
 export function getUserInfo() {
-  return cookie.get('userInfo');
+  return cookies.get('userInfo');
 }
 
 export function setAccessToken(token) {
-  cookie.set('token', token, {
+  cookies.set('token', token, {
     path: '/'
     // expires: convertTimestampToDate(getExpireTime())
   });
 }
 
 export function getAccessToken() {
-  return cookie.get('token');
+  return cookies.get('token');
 }
 
 export function setExpireTime(expireAt) {
-  cookie.set('expireAt', expireAt, {
+  cookies.set('expireAt', expireAt, {
     path: '/',
     expires: convertTimestampToDate(expireAt)
   });
 }
 
 function getExpireTime() {
-  return cookie.get('expireAt');
+  return cookies.get('expireAt');
 }
 
 export function isAuthenticated() {
@@ -51,7 +51,7 @@ export function revokeUser() {
   const options = {
     path: '/'
   };
-  cookie.remove('userInfo', options);
-  cookie.remove('token', options);
-  cookie.remove('expireAt', options);
+  cookies.remove('userInfo', options);
+  cookies.remove('token', options);
+  cookies.remove('expireAt', options);
 }

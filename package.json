@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "eslint '*/**/*.{js,jsx}' --quiet --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix -f git-log",
@@ -34,7 +39,8 @@
     "react-dom": "17.0.1",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
-    "sass": "^1.53.0"
+    "sass": "^1.53.0",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "eslint": "^7.5.0",

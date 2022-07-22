@@ -37,11 +37,12 @@ module.exports = {
       'error',
       {
         cases: {
-          camelCase: false,
-          kebabCase: false
-        },
-        // ignore: ['^FOOBAR\\.js$', '^(B|b)az', '\\.SOMETHING\\.js$', /^vendor/i],
-        ignore: ['src/containers/**/*.js']
+          camelCase: true,
+          kebabCase: true,
+          pascalCase: true
+        }
+        // ignore: ['^FOOBAR\\.js$', '^(B|b)az', '\\.SOMETHING\\.js$', /^vendor/i]
+        // ignore: ['src/containers/**/*.js']
       }
     ]
   }

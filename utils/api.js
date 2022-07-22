@@ -22,6 +22,10 @@ api.interceptors.request.use(config => {
 
 api.interceptors.response.use(
   response => {
+    if (response && response.headers) {
+      return { ...response.headers, ...response.data };
+    }
+
     if (response && response.data) {
       return response.data;
     }

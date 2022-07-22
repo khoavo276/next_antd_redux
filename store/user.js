@@ -1,63 +1,51 @@
-/* eslint-disable unicorn/consistent-function-scoping */
 import { createSlice } from '@reduxjs/toolkit';
-// import { setUserLocal, removeUserLocal } from '../utils/Common';
-// import { pushToast } from '../components/Toast';
-// Slice
+import {
+  getAccessToken,
+  getUserInfo,
+  revokeUser,
+  setAccessToken,
+  setUserInfo
+} from '@utils/cookie';
 
-// const initialUser = localStorage.getItem('user')
-//   ? JSON.parse(localStorage.getItem('user'))
-//   : null;
+const initialUser = getUserInfo() ? getUserInfo() : null;
+const initIsLogin = !!getAccessToken() || false;
 
 const slice = createSlice({
   name: 'user',
   initialState: {
-    user: {},
-    isLogin: false
+    user: initialUser,
+    isLogin: initIsLogin
   },
   reducers: {
     loginSuccess: (state, action) => {
       state.user = action.payload;
       state.isLogin = true;
-      // localStorage.setItem("user", JSON.stringify(action.payload));
-      // setUserLocal(action.payload?.token, action?.payload?.user);
-      window.location.href = '/';
+      setUserInfo(action?.payload.user);
+      setAccessToken(action?.payload.token);
     },
     logoutSuccess: state => {
-      state.user = undefined;
+      state.user = null;
       state.isLogin = false;
-      // localStorage.removeItem("user");
-      // removeUserLocal();
+      revokeUser();
     }
   }
 });
 
 export default slice.reducer;
 
-// Actions
-
 const { loginSuccess, logoutSuccess } = slice.actions;
 
-export const login = values => async dispatch => {
-  try {
-    // await api.post("/api/auth/login/", { username, password });
-
-    let user = {
-      username: values?.user
-    };
-    let token = 'faketoken';
-
-    dispatch(loginSuccess({ user: user, token: token }));
-  } catch {
-    // pushToast('error', e?.message);
-    // return console.error(error.message);
-  }
+export const login = token => async dispatch => {
+  const user = null;
+  dispatch(loginSuccess({ user: user, token: token }));
 };
 
-export const logout = () => async dispatch => {
-  try {
-    // await api.post('/api/auth/logout/')
-    return dispatch(logoutSuccess());
-  } catch {
-    // return console.error(error.message);
-  }
+// export const logout = () => async dispatch => {
+//   dispatch(logoutSuccess());
+// };
+
+export const logout = () => {
+  return async dispatch => {
+    dispatch(logoutSuccess());
+  };
 };

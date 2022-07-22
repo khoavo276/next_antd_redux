@@ -1,12 +1,30 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import PATHS from '@config/paths';
+import { login } from '@store/user';
+import api from '@utils/api';
+import { Button, Form, Input, message } from 'antd';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const LoginContainer = () => {
-  const onFinish = values => {
-    console.log('Success:', values);
-  };
+  const [submitting, setSubmitting] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+  const onFinish = async values => {
+    try {
+      setSubmitting(true);
+      const response = await api.post(`/users/sign_in`, values);
+      const { authorization } = response;
+      const token = authorization.replace('Bearer ', '');
+      const { redirectTo = PATHS.home } = router.query;
+      router.push(redirectTo);
+      dispatch(login(token));
+    } catch (error) {
+      message.error(error?.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -16,16 +34,15 @@ const LoginContainer = () => {
         remember: true
       }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
-            message: 'Please input your username!'
+            message: 'Please input your email!'
           }
         ]}
       >
@@ -46,23 +63,17 @@ const LoginContainer = () => {
       </Form.Item>
 
       <Form.Item
-        name="remember"
-        valuePropName="checked"
         wrapperCol={{
           offset: 8,
           span: 16
         }}
       >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16
-        }}
-      >
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          disabled={submitting}
+          loading={submitting}
+        >
           Submit
         </Button>
       </Form.Item>
