@@ -41,7 +41,6 @@ module.exports = {
           kebabCase: true,
           pascalCase: true
         }
-        // ignore: ['src/containers/**/*.js']
       }
     ]
   }

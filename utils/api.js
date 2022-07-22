@@ -23,7 +23,7 @@ api.interceptors.request.use(config => {
 api.interceptors.response.use(
   response => {
     if (response && response.headers) {
-      return { ...response.headers, ...response.data };
+      return { ...response.headers, ...response?.data };
     }
 
     if (response && response.data) {

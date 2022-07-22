@@ -40,10 +40,6 @@ export const login = token => async dispatch => {
   dispatch(loginSuccess({ user: user, token: token }));
 };
 
-// export const logout = () => async dispatch => {
-//   dispatch(logoutSuccess());
-// };
-
 export const logout = () => {
   return async dispatch => {
     dispatch(logoutSuccess());
