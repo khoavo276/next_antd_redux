@@ -11,7 +11,7 @@ const initialUser = getUserInfo() ? getUserInfo() : null;
 const initIsLogin = !!getAccessToken();
 
 const slice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState: {
     user: initialUser,
     isLogin: initIsLogin

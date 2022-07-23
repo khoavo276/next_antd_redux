@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import { getAccessToken, revokeUser } from './cookie';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_HOST,
+  baseURL: `${process.env.NEXT_PUBLIC_API_HOST}/api`,
   headers: {
     'Content-Type': 'application/json'
   },

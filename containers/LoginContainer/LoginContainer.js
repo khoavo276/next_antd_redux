@@ -1,14 +1,11 @@
-import PATHS from '@config/paths';
-import { login } from '@store/user';
+import { login } from '@store/auth';
 import api from '@utils/api';
 import { Button, Form, Input, message } from 'antd';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const LoginContainer = () => {
   const [submitting, setSubmitting] = useState(false);
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const onFinish = async values => {
@@ -17,8 +14,6 @@ const LoginContainer = () => {
       const response = await api.post(`/users/sign_in`, values);
       const { authorization } = response;
       const token = authorization.replace('Bearer ', '');
-      const { redirectTo = PATHS.home } = router.query;
-      router.push(redirectTo);
       dispatch(login(token));
     } catch (error) {
       message.error(error?.message);

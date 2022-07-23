@@ -1,5 +1,6 @@
 import LoginContainer from '@containers/LoginContainer';
-import SpPageLayout from '@layouts/sp-page-layout';
+import SpPageLayout from '@layouts/SpPageLayout';
+import WithoutAuth from '@routes/WithoutAuth';
 
 const Login = () => {
   return (
@@ -9,4 +10,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default WithoutAuth(Login);
