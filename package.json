@@ -1,6 +1,7 @@
 {
   "name": "next-js-antd-redux",
   "version": "0.1.0",
+  "author": "Khoa Vo <khoavo276@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "next dev",

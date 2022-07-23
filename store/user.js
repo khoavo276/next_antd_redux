@@ -8,7 +8,7 @@ import {
 } from '@utils/cookie';
 
 const initialUser = getUserInfo() ? getUserInfo() : null;
-const initIsLogin = !!getAccessToken() || false;
+const initIsLogin = !!getAccessToken();
 
 const slice = createSlice({
   name: 'user',
@@ -18,7 +18,7 @@ const slice = createSlice({
   },
   reducers: {
     loginSuccess: (state, action) => {
-      state.user = action.payload;
+      state.user = action?.payload?.user;
       state.isLogin = true;
       setUserInfo(action?.payload.user);
       setAccessToken(action?.payload.token);

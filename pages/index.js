@@ -1,4 +1,3 @@
-import { CiCircleFilled } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 
 export default function Home() {
@@ -7,7 +6,6 @@ export default function Home() {
       <Space direction="vertical">
         <Button type="primary">Primary Button</Button>
         <Button type="ghost">Ghost Button</Button>
-        <CiCircleFilled />
       </Space>
     </div>
   );

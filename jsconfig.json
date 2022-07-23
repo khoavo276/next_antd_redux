@@ -8,8 +8,7 @@
       "@config/*": ["config/*"],
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
-      "@layouts/*": ["layouts/*"],
-      "@styles/*": ["styles/*"]
+      "@layouts/*": ["layouts/*"]
     }
   },
   "exclude": ["node_modules", ".next"]
